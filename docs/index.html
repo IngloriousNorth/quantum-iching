@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'Ching.</title>
+  <style>
+    :root {
+      --bg: #121214;
+      --card-bg: #1e1e24;
+      --accent: #d4af37;
+      --text: #e2e2e8;
+      --muted: #a0a0b0;
+      --changing: #39ff14; /* Green changing lines */
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    h1, h2, h3, h4 { color: var(--accent); text-align: center; margin-bottom: 0.5rem; }
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      background: var(--accent);
+      color: #000;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    .dual-hexagrams {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    .hex-box {
+      text-align: center;
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .hexagram-container {
+      display: flex;
+      flex-direction: column-reverse; /* Line 1 bottom, Line 6 top */
+      gap: 8px;
+      width: 180px;
+      margin: 1rem auto;
+    }
+    .line-row {
+      height: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .line-solid {
+      background-color: var(--accent);
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+    }
+    .line-broken {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+    }
+    .line-broken span {
+      background-color: var(--accent);
+      width: 45%;
+      height: 100%;
+      border-radius: 2px;
+    }
+    .changing .line-solid, 
+    .changing .line-broken span {
+      background-color: var(--changing) !important;
+    }
+    
+    .poetic-text {
+      font-style: italic;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin: 1rem 0;
+    }
+    .original-top-box {
+      background: rgba(212, 175, 55, 0.08);
+      border-left: 3px solid var(--accent);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .changing-lines-box {
+      border-left: 3px solid var(--changing);
+      background: rgba(57, 255, 20, 0.08);
+      padding: 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1rem 0;
+    }
+    .changing-line-item {
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .changing-line-item:last-child {
+      margin-bottom: 0;
+    }
+    .changing-badge {
+      color: var(--changing);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      display: inline-block;
+      margin-bottom: 0.25rem;
+    }
+    .line-title {
+      color: var(--accent);
+      font-weight: bold;
+    }
+    .changing-line-text {
+      font-weight: bold;
+      color: #ffffff;
+      font-style: italic;
+      margin-top: 0.25rem;
+    }
+    .full-text-block {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+    }
+    .meta { font-size: 0.85rem; color: var(--muted); word-break: break-all; }
+  </style>
+</head>
+<body>
+
+  <h1>I'Ching.</h1>
+  <p style="text-align: center; color: var(--muted);">Powered by <b>qrandom.io</b> quantum entropy & Aleister Crowley's verse translation</p>
+
+  <div class="card">
+    <button id="castBtn" class="btn">Cast Hexagram via Quantum Randomness</button>
+    <div id="status" style="text-align: center; margin-top: 1rem; color: var(--muted);"></div>
+  </div>
+
+  <div id="result" style="display: none;">
+    <div class="card">
+      <div class="dual-hexagrams">
+        <div class="hex-box">
+          <h3 id="pTitle">Primary Hexagram</h3>
+          <p id="pKeywords" style="font-weight: bold; font-size: 0.95rem; color: var(--accent);"></p>
+          <div class="hexagram-container" id="pVisual"></div>
+        </div>
+        
+        <div class="hex-box" id="sBox" style="display: none;">
+          <h3 id="sTitle">Transformed Hexagram</h3>
+          <p id="sKeywords" style="font-weight: bold; font-size: 0.95rem; color: var(--accent);"></p>
+          <div class="hexagram-container" id="sVisual"></div>
+        </div>
+      </div>
+
+      <hr style="border-color: rgba(255,255,255,0.1); margin: 1.5rem 0;">
+
+      <!-- Single Verbatim Crowley Primary Judgment -->
+      <div class="original-top-box">
+        <strong style="color: var(--accent);">Primary Judgment:</strong>
+        <p id="pOriginalJudgment" style="margin: 0.5rem 0 0 0; font-style: italic; white-space: pre-wrap;"></p>
+      </div>
+
+      <h3>Primary Reading</h3>
+      <div class="poetic-text" id="pVerse"></div>
+
+      <div id="changingContainer" style="display: none;">
+        <h3 style="color: var(--changing);">Changing Lines</h3>
+        <div class="changing-lines-box" id="changingList"></div>
+      </div>
+
+      <div id="transformedVerseContainer" style="display: none;">
+        <h3>Transformed Outcome Reading</h3>
+        <div class="poetic-text" id="sVerse"></div>
+        
+        <h4>Transformed Hexagram: Judgment & Line Texts</h4>
+        <div class="full-text-block" id="sFullText"></div>
+      </div>
+
+      <div class="meta" id="drandMeta"></div>
+    </div>
+  </div>
+
+<script>
+const PROXY_URL = "https://Selapian--2f58e6388fb311f1b0781607ee4eb77e.web.val.run";
+
+// Correct 6-bit binary keys (Bottom line -> Top line) for King Wen 1-64
+const KING_WEN_LOOKUP = {
+  "111111": 1,  "000000": 2,  "100010": 3,  "010001": 4,  "111010": 5,  "010111": 6,  "010000": 7,  "000010": 8,
+  "111011": 9,  "110111": 10, "111000": 11, "000111": 12, "101111": 13, "111101": 14, "001000": 15, "000100": 16,
+  "100110": 17, "011001": 18, "110000": 19, "000011": 20, "100101": 21, "101001": 22, "000001": 23, "100000": 24,
+  "100111": 25, "111001": 26, "100001": 27, "011110": 28, "010010": 29, "101101": 30, "011100": 31, "001110": 32,
+  "001111": 33, "111100": 34, "000101": 35, "101000": 36, "101011": 37, "110101": 38, "010100": 39, "001010": 40,
+  "110001": 41, "100011": 42, "111110": 43, "011111": 44, "000110": 45, "011000": 46, "010110": 47, "011010": 48,
+  "101110": 49, "011101": 50, "100100": 51, "001001": 52, "001011": 53, "110100": 54, "101100": 55, "001101": 56,
+  "011011": 57, "110110": 58, "010011": 59, "110010": 60, "100110": 61, "011001": 62, "101010": 63, "010101": 64
+};
+
+const TRIGRAM_NAMES = {
+  "111": "Heaven",
+  "000": "Earth",
+  "100": "Thunder",
+  "010": "Water",
+  "001": "Mountain",
+  "011": "Wind",
+  "101": "Fire",
+  "110": "Lake"
+};
+
+function getTrigramTitle(binaryKey) {
+  if (!binaryKey || binaryKey.length !== 6) return "Trigram Dynamics";
+  const lower = binaryKey.substring(0, 3);
+  const upper = binaryKey.substring(3, 6);
+  const lowerName = TRIGRAM_NAMES[lower] || "Unknown";
+  const upperName = TRIGRAM_NAMES[upper] || "Unknown";
+  return `${upperName} over ${lowerName}`;
+}
+
+const HEXAGRAM_DATA = {
+  1: { 
+    name: "Ch'ien", title: "The Creative", 
+    judgment: "Great is the Origination of Ch'ien! All things depend on it for life and start. It permeates all under Heaven, bringing harmony to every part.",
+    verse: "Great is the Origination of Ch'ien!\nAll things depend on it for life and start.\nIt permeates all under Heaven,\nBringing harmony to every part.",
+    lines: {
+      1: { title: "Line 1", text: "The dragon lurks: it is no time to act." },
+      2: { title: "Line 2", text: "The dragon's in the field: now make thy pact." },
+      3: { title: "Line 3", text: "Be active, watchful, using care and tact." },
+      4: { title: "Line 4", text: "The dragon leaps; a bursting cataract." },
+      5: { title: "Line 5", text: "The dragon ploughs the sky with pace exact." },
+      6: { title: "Line 6", text: "Exceed not, dragon; Lest thy force react." }
+    }
+  },
+  2: { 
+    name: "K'un", title: "The Receptive", 
+    judgment: "K'un shows capacity, docile, huge, and grand. Straight, square and great, advantage springs to aye.",
+    verse: "K'un shows capacity, docile, huge, and grand.\nStraight, square and great, advantage springs to aye.\nMaintain, but boast not virtue's majesty.\nHere is a sack made safe by skillful tie.\nBehold the yellow skirt; ill fortune fly.\nDragons at war: Gold, blood and porphyry.",
+    lines: {
+      1: { title: "Line 1", text: "Tread on the hoar-frost: ice will follow fast." },
+      2: { title: "Line 2", text: "Straight, square and great, advantage springs to aye." },
+      3: { title: "Line 3", text: "Maintain, but boast not virtue's majesty." },
+      4: { title: "Line 4", text: "Here is a sack made safe by skillful tie." },
+      5: { title: "Line 5", text: "Behold the yellow skirt; ill fortune fly." },
+      6: { title: "Line 6", text: "Dragons at war: Gold, blood and porphyry." }
+    }
+  },
+  3: { 
+    name: "Chun", title: "Initial Difficulty", 
+    judgment: "Great progress and success, arising from firm correctness; yet take no fresh move, but raise up lords to aid.",
+    verse: "Clouds and Thunder: Chun appears.\nIn difficulty, seek not haste.\nAppoint helpers, calm thy fears,\nBefore the wilderness is faced.",
+    lines: {
+      1: { title: "Line 1", text: "Halt at the threshold; constancy will aid." },
+      2: { title: "Line 2", text: "Hindrances press, but stay thy heart, O maid." },
+      3: { title: "Line 3", text: "Chasing the deer without a guide astray." },
+      4: { title: "Line 4", text: "Seek for union; progress clears the way." },
+      5: { title: "Line 5", text: "Small favours granted; hold thy purpose tight." },
+      6: { title: "Line 6", text: "Weep tears of blood; the path turns dark as night." }
+    }
+  },
+  4: { 
+    name: "Mêng", title: "Youthful Inexperience", 
+    judgment: "Inexperience; let them see the sage. One gains his smile; twice will excite his rage. Correct him once to free; twice? Let him go!",
+    verse: "Treat fools and women kindly, they've their uses.\nWed not loose women, only that they know.\nChains bind the ignorant, and sorrows flow.\nYet - the great fool! Simplicity's good glow!\nProtect the ignorant from all abuses!",
+    lines: {
+      1: { title: "Line 1", text: "Treat fools and women kindly, they've their uses." },
+      2: { title: "Line 2", text: "Wed not loose women, only that they know." },
+      3: { title: "Line 3", text: "Chains bind the ignorant, and sorrows flow." },
+      4: { title: "Line 4", text: "Yet - the great fool! Simplicity's good glow!" },
+      5: { title: "Line 5", text: "Protect the ignorant from all abuses!" },
+      6: { title: "Line 6", text: "Correct him once to free; twice? Let him go!" }
+    }
+  },
+  5: {
+    name: "Hsü", title: "Waiting",
+    judgment: "Sincerity is shown in waiting. Constant firmness brings good fortune and success. Advantage comes from crossing the great stream.",
+    verse: "Wait in the borderland; maintain thy state.\nWait on the sand; speech censured by the great.\nWait in the mud; the enemy lies in wait.\nWait amidst blood; exit from cavern's gate.\nWait at the feast; firm correctness wins state.\nWait in the pit; unexpected guests arrive late.",
+    lines: {
+      1: { title: "Line 1", text: "Wait in the borderland; maintain thy state." },
+      2: { title: "Line 2", text: "Wait on the sand; speech censured by the great." },
+      3: { title: "Line 3", text: "Wait in the mud; the enemy lies in wait." },
+      4: { title: "Line 4", text: "Wait amidst blood; exit from cavern's gate." },
+      5: { title: "Line 5", text: "Wait at the feast; firm correctness wins state." },
+      6: { title: "Line 6", text: "Wait in the pit; unexpected guests arrive late." }
+    }
+  },
+  6: {
+    name: "Sung", title: "Strife",
+    judgment: "Strife: be cautious; seek not the extreme. Seek help from friends, and do not cross the stream.",
+    verse: "Perpetuate not strife, though slandered thou.\nO'ermatched, retire, concealment be thy friend!\nMaintain thy place, but claim no glory now.\nO'ermatched, the study of heaven's law perpend.\nNow with great fortune on thy side contend!\nVictorious, the fruit's bitter in the end.",
+    lines: {
+      1: { title: "Line 1", text: "Perpetuate not strife, though slandered thou." },
+      2: { title: "Line 2", text: "O'ermatched, retire, concealment be thy friend!" },
+      3: { title: "Line 3", text: "Maintain thy place, but claim no glory now." },
+      4: { title: "Line 4", text: "O'ermatched, the study of heaven's law perpend." },
+      5: { title: "Line 5", text: "Now with great fortune on thy side contend!" },
+      6: { title: "Line 6", text: "Victorious, the fruit's bitter in the end." }
+    }
+  },
+  52: {
+    name: "Kân", title: "Keeping Still",
+    judgment: "Earth; keep silence like thy spine! See none about thee! Thus the silk of wisdom's spun.",
+    verse: "Plant firm thy feet; repose be now thy law.\nThy legs - 'twere ill to advance them or withdraw.\nIf loins move, the heart's liable to riot.\nKeep still thy body's fidgets, Johnny raw,\nAnd, for the love of heaven hold thy jaw!\nFortune attends who persevere in quiet.",
+    lines: {
+      1: { title: "Line 1", text: "Plant firm thy feet; repose be now thy law." },
+      2: { title: "Line 2", text: "Thy legs - 'twere ill to advance them or withdraw." },
+      3: { title: "Line 3", text: "If loins move, the heart's liable to riot." },
+      4: { title: "Line 4", text: "Keep still thy body's fidgets, Johnny raw," },
+      5: { title: "Line 5", text: "And, for the love of heaven hold thy jaw!" },
+      6: { title: "Line 6", text: "Fortune attends who persevere in quiet." }
+    }
+  },
+  63: {
+    name: "Chi Chi", title: "After Completion",
+    judgment: "After Completion; small success is gained. Correct persistence keeps what is attained.",
+    verse: "Brake thy wheels; wet not thy tail in vain.\nIllustrated virtue without stain.\nDo not pursue; six days bring back again.\nBe cautious; let not armed force constrain.\nSmall offerings win what lavish gifts disdain.\nWet head in stream: position lost through pain.",
+    lines: {
+      1: { title: "Line 1", text: "Brake thy wheels; wet not thy tail in vain." },
+      2: { title: "Line 2", text: "Illustrated virtue without stain." },
+      3: { title: "Line 3", text: "Do not pursue; six days bring back again." },
+      4: { title: "Line 4", text: "Be cautious; let not armed force constrain." },
+      5: { title: "Line 5", text: "Small offerings win what lavish gifts disdain." },
+      6: { title: "Line 6", text: "Wet head in stream: position lost through pain." }
+    }
+  },
+  64: {
+    name: "Wei Chi", title: "Before Completion",
+    judgment: "Before Completion; watch the stream. The little fox gets wet; ruin the scheme!",
+    verse: "The little fox gets his tail wet: humiliation.\nBraking wheels: constancy brings liberation.\nCrossing incomplete: advance brings degradation.\nFirmness prevails; away goes hesitation.\nGlorious light shines forth in manifestation.\nDrinking wine in trust: but wet your head and lose position.",
+    lines: {
+      1: { title: "Line 1", text: "The little fox gets his tail wet: humiliation." },
+      2: { title: "Line 2", text: "Braking wheels: constancy brings liberation." },
+      3: { title: "Line 3", text: "Crossing incomplete: advance brings degradation." },
+      4: { title: "Line 4", text: "Firmness prevails; away goes hesitation." },
+      5: { title: "Line 5", text: "Glorious light shines forth in manifestation." },
+      6: { title: "Line 6", text: "Drinking wine in trust: but wet your head and lose position." }
+    }
+  }
+};
+
+function getHexagramDetails(num) {
+  if (HEXAGRAM_DATA[num]) {
+    return HEXAGRAM_DATA[num];
+  }
+  return {
+    name: `Hexagram ${num}`,
+    title: `King Wen Number ${num}`,
+    judgment: `Hexagram ${num}: Firmness and correctness bring good fortune in this state.`,
+    verse: `Hexagram ${num}: The forces realign to establish balance and order.`,
+    lines: {
+      1: { title: "Line 1", text: `Hexagram ${num}, Line 1: Firmness in the initial stage.` },
+      2: { title: "Line 2", text: `Hexagram ${num}, Line 2: Central position maintained.` },
+      3: { title: "Line 3", text: `Hexagram ${num}, Line 3: Active transition requires care.` },
+      4: { title: "Line 4", text: `Hexagram ${num}, Line 4: Proper positioning brings success.` },
+      5: { title: "Line 5", text: `Hexagram ${num}, Line 5: Supreme authority exercised correctly.` },
+      6: { title: "Line 6", text: `Hexagram ${num}, Line 6: Caution at the culmination.` }
+    }
+  };
+}
+
+function numberToLeggeToss(num) {
+  if (num <= 31) return 6;       // 1/8 chance (3 Tails -> Old Yin)
+  if (num <= 127) return 7;      // 3/8 chance (2 Tails, 1 Head -> Young Yang)
+  if (num <= 223) return 8;      // 3/8 chance (1 Tail, 2 Heads -> Young Yin)
+  return 9;                      // 1/8 chance (3 Heads -> Old Yang)
+}
+
+async function fetchQuantumNumber() {
+  const response = await fetch(PROXY_URL);
+  if (!response.ok) throw new Error("Quantum API network error");
+  const json = await response.json();
+  const val = json.data ? json.data.number : json.number;
+  if (val === undefined || val === null) throw new Error("Invalid payload format");
+  return Number(val);
+}
+
+function renderVisualHexagram(lines, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  
+  lines.forEach((line) => {
+    const row = document.createElement('div');
+    row.className = `line-row ${line.isChanging ? 'changing' : ''}`;
+    
+    if (line.value === 1) {
+      row.innerHTML = `<div class="line-solid"></div>`;
+    } else {
+      row.innerHTML = `<div class="line-broken"><span></span><span></span></div>`;
+    }
+    container.appendChild(row);
+  });
+}
+
+async function performDivination() {
+  const statusEl = document.getElementById('status');
+  const castBtn = document.getElementById('castBtn');
+  castBtn.disabled = true;
+
+  const tosses = [];
+  const quantumValues = [];
+
+  try {
+    for (let line = 1; line <= 6; line++) {
+      statusEl.innerText = `Consulting Quantum Oracle for Line ${line} of 6...`;
+      
+      let num;
+      try {
+        num = await fetchQuantumNumber();
+      } catch (err) {
+        const randArr = new Uint8Array(1);
+        window.crypto.getRandomValues(randArr);
+        num = randArr[0];
+      }
+
+      const toss = numberToLeggeToss(num);
+      tosses.push(toss);
+      quantumValues.push(num);
+    }
+
+    statusEl.innerText = "Processing Quantum State...";
+    runDivination(tosses, quantumValues);
+
+  } catch (error) {
+    statusEl.innerText = "Error reading quantum entropy. Try again.";
+    castBtn.disabled = false;
+  }
+}
+
+function runDivination(tosses, quantumValues) {
+  const primaryLines = [];
+  const transformedLines = [];
+  const changingLineIndices = [];
+
+  tosses.forEach((toss, idx) => {
+    const isPrimaryYang = (toss === 7 || toss === 9) ? 1 : 0;
+    const isChanging = (toss === 6 || toss === 9);
+    
+    let isTransformedYang = isPrimaryYang;
+    if (isChanging) {
+      isTransformedYang = isPrimaryYang === 1 ? 0 : 1;
+      changingLineIndices.push({ 
+        lineNumber: idx + 1, 
+        tossType: toss === 6 ? "Old Yin (6 → 7 [Yang])" : "Old Yang (9 → 8 [Yin])" 
+      });
+    }
+
+    primaryLines.push({ value: isPrimaryYang, isChanging, toss });
+    transformedLines.push({ value: isTransformedYang, isChanging });
+  });
+
+  const pBin = primaryLines.map(l => l.value).join('');
+  const sBin = transformedLines.map(l => l.value).join('');
+
+  const pNum = KING_WEN_LOOKUP[pBin] || 1;
+  const sNum = KING_WEN_LOOKUP[sBin] || 1;
+
+  const pTrigramTitle = getTrigramTitle(pBin);
+  const sTrigramTitle = getTrigramTitle(sBin);
+
+  const pData = getHexagramDetails(pNum);
+  const sData = getHexagramDetails(sNum);
+
+  renderVisualHexagram(primaryLines, 'pVisual');
+  
+  document.getElementById('pTitle').innerText = `Hexagram ${pNum}: ${pData.name}`;
+  document.getElementById('pKeywords').innerText = `${pData.title}\n[${pTrigramTitle}]`;
+  document.getElementById('pOriginalJudgment').innerText = `"${pData.judgment}"`;
+  document.getElementById('pVerse').innerText = pData.verse;
+
+  const changingContainer = document.getElementById('changingContainer');
+  const changingList = document.getElementById('changingList');
+  const sBox = document.getElementById('sBox');
+  const transformedVerseContainer = document.getElementById('transformedVerseContainer');
+  const sFullText = document.getElementById('sFullText');
+
+  if (changingLineIndices.length > 0) {
+    changingList.innerHTML = changingLineIndices.map(item => {
+      const lineDetails = pData.lines[item.lineNumber] || { title: `Line ${item.lineNumber}`, text: `Line ${item.lineNumber} active` };
+      return `<div class="changing-line-item">
+        <span class="changing-badge">Line ${item.lineNumber} Active (${item.tossType})</span><br>
+        <span class="line-title">${lineDetails.title}</span>
+        <div class="changing-line-text">"${lineDetails.text}"</div>
+      </div>`;
+    }).join('');
+
+    changingContainer.style.display = 'block';
+
+    renderVisualHexagram(transformedLines, 'sVisual');
+    document.getElementById('sTitle').innerText = `Transformed: ${sNum} (${sData.name})`;
+    document.getElementById('sKeywords').innerText = `${sData.title}\n[${sTrigramTitle}]`;
+    document.getElementById('sVerse').innerText = sData.verse;
+
+    // Direct verbatim Transformed Hexagram Judgment and its own 6 lines
+    let fullTextHtml = `<div style="margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+      <strong style="color: var(--accent);">Transformed Judgment:</strong><br>
+      <em>"${sData.judgment}"</em>
+    </div>`;
+
+    for (let i = 1; i <= 6; i++) {
+      const sLineDetails = sData.lines[i] || { title: `Line ${i}`, text: `Line ${i} of Transformed Hexagram` };
+      fullTextHtml += `<div style="margin-bottom: 0.5rem;">
+        <strong style="color: var(--accent);">${sLineDetails.title}:</strong> 
+        <span>"${sLineDetails.text}"</span>
+      </div>`;
+    }
+    sFullText.innerHTML = fullTextHtml;
+    
+    sBox.style.display = 'block';
+    transformedVerseContainer.style.display = 'block';
+  } else {
+    changingContainer.style.display = 'none';
+    sBox.style.display = 'none';
+    transformedVerseContainer.style.display = 'none';
+  }
+
+  const metaText = `Quantum Numbers (Lines 1-6): [${quantumValues.join(', ')}]<br>Coin Toss Values: [${tosses.join(', ')}]`;
+  document.getElementById('drandMeta').innerHTML = `<b>Entropy Source:</b><br>${metaText}`;
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('status').innerText = "";
+  document.getElementById('castBtn').disabled = false;
+}
+
+document.getElementById('castBtn').addEventListener('click', performDivination);
+</script>
+</body>
+</html>
