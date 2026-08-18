@@ -218,7 +218,7 @@ const KING_WEN_LOOKUP = {
   "001111": 33, "111100": 34, "000101": 35, "101000": 36, "101011": 37, "110101": 38, "010100": 39, "001010": 40,
   "110001": 41, "100011": 42, "111110": 43, "011111": 44, "000110": 45, "011000": 46, "010110": 47, "011010": 48,
   "101110": 49, "011101": 50, "100100": 51, "001001": 52, "001011": 53, "110100": 54, "101100": 55, "001101": 56,
-  "011011": 57, "110110": 58, "010011": 59, "110010": 60, "100110": 61, "011001": 62, "101010": 63, "010101": 64
+  "011011": 57, "110110": 58, "010011": 59, "110010": 60, "110011": 61, "011001": 62, "101010": 63, "010101": 64
 };
 
 const TRIGRAM_NAMES = {
@@ -242,8 +242,8 @@ function getTrigramTitle(binaryKey) {
 }
 
 const HEXAGRAM_DATA = {
-  1: { 
-    name: "Ch'ien", title: "The Creative", 
+  1: {
+    name: "Ch'ien", title: "The Creative",
     judgment: "Great is the Origination of Ch'ien! All things depend on it for life and start. It permeates all under Heaven, bringing harmony to every part.",
     verse: "Great is the Origination of Ch'ien!\nAll things depend on it for life and start.\nIt permeates all under Heaven,\nBringing harmony to every part.",
     lines: {
@@ -255,8 +255,8 @@ const HEXAGRAM_DATA = {
       6: { title: "Line 6", text: "Exceed not, dragon; Lest thy force react." }
     }
   },
-  2: { 
-    name: "K'un", title: "The Receptive", 
+  2: {
+    name: "K'un", title: "The Receptive",
     judgment: "K'un shows capacity, docile, huge, and grand. Straight, square and great, advantage springs to aye.",
     verse: "K'un shows capacity, docile, huge, and grand.\nStraight, square and great, advantage springs to aye.\nMaintain, but boast not virtue's majesty.\nHere is a sack made safe by skillful tie.\nBehold the yellow skirt; ill fortune fly.\nDragons at war: Gold, blood and porphyry.",
     lines: {
@@ -268,8 +268,8 @@ const HEXAGRAM_DATA = {
       6: { title: "Line 6", text: "Dragons at war: Gold, blood and porphyry." }
     }
   },
-  3: { 
-    name: "Chun", title: "Initial Difficulty", 
+  3: {
+    name: "Chun", title: "Initial Difficulty",
     judgment: "Great progress and success, arising from firm correctness; yet take no fresh move, but raise up lords to aid.",
     verse: "Clouds and Thunder: Chun appears.\nIn difficulty, seek not haste.\nAppoint helpers, calm thy fears,\nBefore the wilderness is faced.",
     lines: {
@@ -281,8 +281,8 @@ const HEXAGRAM_DATA = {
       6: { title: "Line 6", text: "Weep tears of blood; the path turns dark as night." }
     }
   },
-  4: { 
-    name: "Mêng", title: "Youthful Inexperience", 
+  4: {
+    name: "Mêng", title: "Youthful Inexperience",
     judgment: "Inexperience; let them see the sage. One gains his smile; twice will excite his rage. Correct him once to free; twice? Let him go!",
     verse: "Treat fools and women kindly, they've their uses.\nWed not loose women, only that they know.\nChains bind the ignorant, and sorrows flow.\nYet - the great fool! Simplicity's good glow!\nProtect the ignorant from all abuses!",
     lines: {
@@ -320,6 +320,591 @@ const HEXAGRAM_DATA = {
       6: { title: "Line 6", text: "Victorious, the fruit's bitter in the end." }
     }
   },
+  7: {
+    name: "Sze", title: "The Army",
+    judgment: "The Army requires firmness and a experienced leader. Good fortune without error.",
+    verse: "The host needs discipline and experienced direction.\nAdvance in order, guard against infection.\nLoose rules bring ruin, failure in battle's test.\nAn old commander guides the host to rest.",
+    lines: {
+      1: { title: "Line 1", text: "The army sets forth under rigid rule; lack of order brings disaster." },
+      2: { title: "Line 2", text: "In the center of the army lies good fortune; the king bestows triple honors." },
+      3: { title: "Line 3", text: "The army carries corpses in the wagon; ill fortune." },
+      4: { title: "Line 4", text: "The army retreats and encamps in safety; no error." },
+      5: { title: "Line 5", text: "Wild game in the field; let the eldest command, the younger brings defeat." },
+      6: { title: "Line 6", text: "The great prince issues mandates, founds states, appoints lords; employ not inferior men." }
+    }
+  },
+  8: {
+    name: "Pi", title: "Holding Together",
+    judgment: "Holding together brings good fortune. Inquire of the oracle again whether thou hast sincerity and constancy.",
+    verse: "Seek union early; delay brings cause to weep.\nBuild bonds of trust that true companions keep.\nWater over Earth: harmony taking form,\nA steadfast heart will weather every storm.",
+    lines: {
+      1: { title: "Line 1", text: "Sincerity is like a full earthen bowl; unexpected good fortune arrives." },
+      2: { title: "Line 2", text: "Hold together internally; perseverance brings good fortune." },
+      3: { title: "Line 3", text: "Hold together with unsuitable people; sorrow follows." },
+      4: { title: "Line 4", text: "Hold together externally with the noble; perseverance brings success." },
+      5: { title: "Line 5", text: "Manifesting union: the king loses three sides of game, takes only what approaches." },
+      6: { title: "Line 6", text: "Holding together without a head; ill fortune." }
+    }
+  },
+  9: {
+    name: "Hsiao Ch'u", title: "Small Restraining",
+    judgment: "Small Restraining has success. Dense clouds, no rain, from our western borders.",
+    verse: "Wind moves in Heaven, gentle force restrains.\nClouds gather high, yet fall no cooling rains.\nRefine the small, prepare with quiet skill,\nUntil the greater powers work thy will.",
+    lines: {
+      1: { title: "Line 1", text: "Return to thine own path; how could there be blame? Good fortune." },
+      2: { title: "Line 2", text: "Drawn back to the right path; good fortune." },
+      3: { title: "Line 3", text: "Spokes burst from wagon wheels; husband and wife roll their eyes." },
+      4: { title: "Line 4", text: "Sincerity removes fear; blood disappears and anxiety vanishes." },
+      5: { title: "Line 5", text: "Sincerity ties bonds; rich in neighbors and mutual trust." },
+      6: { title: "Line 6", text: "Rain falls, rest is achieved; full virtue brings restraint." }
+    }
+  },
+  10: {
+    name: "Lü", title: "Treading",
+    judgment: "Treading upon the tail of the tiger; it does not bite the man. Success.",
+    verse: "Tread on the tiger's tail with gentle tread,\nHe bites thee not; walk firm and free of dread.\nWith courtesy and caution guard thy way,\nThrough peril pass into the light of day.",
+    lines: {
+      1: { title: "Line 1", text: "Simple conduct; proceeding straightforwardly brings no blame." },
+      2: { title: "Line 2", text: "Walking a smooth, quiet path; the quiet man perseveres." },
+      3: { title: "Line 3", text: "A one-eyed man can see, a lame man can walk; treading the tiger's tail brings a bite." },
+      4: { title: "Line 4", text: "Treading on the tiger's tail; extreme caution brings good fortune in the end." },
+      5: { title: "Line 5", text: "Resolute conduct; perseverance with awareness of danger." },
+      6: { title: "Line 6", text: "Look to thy conduct and examine the signs; complete good fortune." }
+    }
+  },
+  11: {
+    name: "T'ai", title: "Peace",
+    judgment: "Peace. The small departs, the great approaches. Good fortune and success.",
+    verse: "Heaven and Earth unite in sweet accord,\nSmall things recede, great blessings are restored.\nThe low ascends, the high stoops down to bless,\nIn harmony find power and success.",
+    lines: {
+      1: { title: "Line 1", text: "Uprooting grass draws others with it; advance brings good fortune." },
+      2: { title: "Line 2", text: "Bear with the uncultivated, cross the river, neglect not the distant." },
+      3: { title: "Line 3", text: "No plain without a slope, no departure without return; stay firm in hardship." },
+      4: { title: "Line 4", text: "Fluttering down, not boasting of wealth, bound in sincerity." },
+      5: { title: "Line 5", text: "Sovereign I gives his daughter in marriage; supreme good fortune." },
+      6: { title: "Line 6", text: "The wall falls back into the moat; use not force, proclaim commands." }
+    }
+  },
+  12: {
+    name: "P'i", title: "Standstill / Stagnation",
+    judgment: "Standstill. Inferior men flourish; the noble man's perseverance is hindered. The great departs, the small approaches.",
+    verse: "Heaven and Earth separate; light recedes,\nInferior men now drive unworthy deeds.\nRetire in silence, guard thy truth within,\nUntil the turning tides of fortune spin.",
+    lines: {
+      1: { title: "Line 1", text: "Uprooting grass; perseverance brings good fortune and success." },
+      2: { title: "Line 2", text: "Endure and support; good fortune for inferior men, success for the great." },
+      3: { title: "Line 3", text: "They bear shame and conceal their hidden unworthiness." },
+      4: { title: "Line 4", text: "He acts upon command of Heaven; no blame, companions share the blessing." },
+      5: { title: "Line 5", text: "Standstill ends! Good fortune for the great man. 'What if it fails?' Tied to mulberry trees." },
+      6: { title: "Line 6", text: "The standstill comes to an end; overthrow brings joy after grief." }
+    }
+  },
+  13: {
+    name: "T'ung Jen", title: "Fellowship with Men",
+    judgment: "Fellowship with men in the open. Success. Advantage in crossing the great stream.",
+    verse: "Fire rises high beneath the boundless Sky,\nIn open fellowship let truth apply.\nNo narrow faction masks the honest soul,\nUnite with all to reach the noble goal.",
+    lines: {
+      1: { title: "Line 1", text: "Fellowship at the gate; no blame." },
+      2: { title: "Line 2", text: "Fellowship within the clan; humiliation." },
+      3: { title: "Line 3", text: "Hiding arms in the thicket, climbing the high hill; three years no movement." },
+      4: { title: "Line 4", text: "Climbing the wall, unable to attack; good fortune comes from restraint." },
+      5: { title: "Line 5", text: "Fellowship first weeps, then laughs; great forces meet and conquer." },
+      6: { title: "Line 6", text: "Fellowship in the suburbs; no regret." }
+    }
+  },
+  14: {
+    name: "Ta Yu", title: "Possession in Great Measure",
+    judgment: "Possession in Great Measure. Supreme success.",
+    verse: "Fire in the heavens shines with brilliant light,\nAbundance crowns the effort made for right.\nSuppress the evil, elevate the good,\nWith humble heart let virtue be renewed.",
+    lines: {
+      1: { title: "Line 1", text: "No relationship with harmful influence; no blame if difficulty is recognized." },
+      2: { title: "Line 2", text: "A big wagon for carrying goods; undertake action without error." },
+      3: { title: "Line 3", text: "A prince offers gifts to the Son of Heaven; a lesser man cannot." },
+      4: { title: "Line 4", text: "Distinguishing between oneself and others; no blame." },
+      5: { title: "Line 5", text: "Sincerity meets sincerity; dignity brings good fortune." },
+      6: { title: "Line 6", text: "Blessed by Heaven; good fortune in every way." }
+    }
+  },
+  15: {
+    name: "Ch'ien", title: "Modesty",
+    judgment: "Modesty creates success. The noble man carries things through to completion.",
+    verse: "High mountains bowed beneath the humble Earth,\nTrue modesty reveals enduring worth.\nReduce excess and give where needs abound,\nIn lowliness true majesty is found.",
+    lines: {
+      1: { title: "Line 1", text: "A modest man of modesty; crossing the great stream brings good fortune." },
+      2: { title: "Line 2", text: "Modesty expressing itself; perseverance brings good fortune." },
+      3: { title: "Line 3", text: "A man of merit and modesty; completes his work with good fortune." },
+      4: { title: "Line 4", text: "Nothing that does not advance modesty; exercise it freely." },
+      5: { title: "Line 5", text: "Not boasting of wealth before neighbors; use force if necessary to correct." },
+      6: { title: "Line 6", text: "Modesty expressed; advance to discipline one's own city and state." }
+    }
+  },
+  16: {
+    name: "Yü", title: "Enthusiasm",
+    judgment: "Enthusiasm. Advantage in appointing helpers and setting armies in motion.",
+    verse: "Thunder bursts forth above the yielding ground,\nEnthusiasm makes great joy abound.\nSet helpers forth, let inspiration reign,\nMovement in harmony yields richest gain.",
+    lines: {
+      1: { title: "Line 1", text: "Proclaiming enthusiasm brings ill fortune." },
+      2: { title: "Line 2", text: "Firm as a rock, not lasting a full day; perseverance brings good fortune." },
+      3: { title: "Line 3", text: "Looking up in enthusiasm brings regret; delay brings further regret." },
+      4: { title: "Line 4", text: "The source of enthusiasm; great results achieved, friends gather." },
+      5: { title: "Line 5", text: "Chronically ill yet enduring; death does not overtake." },
+      6: { title: "Line 6", text: "Deluded enthusiasm; change after completion brings no error." }
+    }
+  },
+  17: {
+    name: "Sui", title: "Following",
+    judgment: "Following has great success. Firmness brings advantage. No error.",
+    verse: "Thunder reposes in the silent lake,\nAdapt thy step for harmony's clear sake.\nRest when night falls, follow the wise and true,\nReleasing old ways to receive the new.",
+    lines: {
+      1: { title: "Line 1", text: "Standard shifts; perseverance brings good fortune, going out yields deeds." },
+      2: { title: "Line 2", text: "Cleaving to the little boy loses the mature man." },
+      3: { title: "Line 3", text: "Cleaving to the mature man lets go the little boy; following yields gain." },
+      4: { title: "Line 4", text: "Following brings followers and success; perseverance brings evil, sincerity clear." },
+      5: { title: "Line 5", text: "Sincere in excellence; good fortune." },
+      6: { title: "Line 6", text: "Bound and held fast; the king offers sacrifices on the Western Mountain." }
+    }
+  },
+  18: {
+    name: "Ku", title: "Work on What Has Been Spoiled",
+    judgment: "Work on what has been spoiled has supreme success. Advantage in crossing the great stream. Three days before, three days after.",
+    verse: "Wind under Mountain: decay takes subtle hold,\nCorrect the errors left by hands of old.\nWeed out corruption, plan with mindful care,\nThree days before and after to prepare.",
+    lines: {
+      1: { title: "Line 1", text: "Remedying what was spoiled by the father; no blame if the son takes care." },
+      2: { title: "Line 2", text: "Remedying what was spoiled by the mother; do not be overly rigid." },
+      3: { title: "Line 3", text: "Remedying father's decay; some remorse, but no great blame." },
+      4: { title: "Line 4", text: "Tolerating father's decay; continuation brings humiliation." },
+      5: { title: "Line 5", text: "Remedying father's decay; praised and rewarded." },
+      6: { title: "Line 6", text: "Serving neither king nor lord; setting oneself higher goals." }
+    }
+  },
+  19: {
+    name: "Lin", title: "Approach",
+    judgment: "Approach has supreme success. Firmness brings advantage. In the eighth month, disaster.",
+    verse: "Earth above Lake: the waters rise to meet,\nApproach with joy, make governance complete.\nEnjoy the springtime while the blossoms bloom,\nEighth month brings winter's inevitable gloom.",
+    lines: {
+      1: { title: "Line 1", text: "Joint approach; perseverance brings good fortune." },
+      2: { title: "Line 2", text: "Joint approach with authority; good fortune, everything advantageous." },
+      3: { title: "Line 3", text: "Comfortable approach; nothing advantageous, but regret brings no blame." },
+      4: { title: "Line 4", text: "Complete approach; no blame." },
+      5: { title: "Line 5", text: "Wise approach suitable for a sovereign; good fortune." },
+      6: { title: "Line 6", text: "Magnanimous approach; good fortune, no blame." }
+    }
+  },
+  20: {
+    name: "Kuan", title: "Contemplation / View",
+    judgment: "Contemplation. The ablution made, but not the offering. Full of trust they look up to him.",
+    verse: "Wind sweeps across the Earth; gaze far and wide,\nObserve with reverence, free from self and pride.\nThe pure devotion of a quiet soul\nReflects the sacred patterns of the whole.",
+    lines: {
+      1: { title: "Line 1", text: "Boyish contemplation; no blame for lesser men, humiliation for the noble." },
+      2: { title: "Line 2", text: "Contemplation through the crack of a door; advantageous for a woman." },
+      3: { title: "Line 3", text: "Contemplating one's own life; decides advance or retreat." },
+      4: { title: "Line 4", text: "Contemplating the light of the realm; advantageous to be a guest of the king." },
+      5: { title: "Line 5", text: "Contemplating one's own life; the noble man incurs no blame." },
+      6: { title: "Line 6", text: "Contemplating the life of others; the noble man incurs no blame." }
+    }
+  },
+  21: {
+    name: "Shih Ho", title: "Biting Through",
+    judgment: "Biting Through has success. Advantage in letting justice be administered.",
+    verse: "Thunder and Lightning spark in fierce display,\nBite through obstacles that block the way!\nLet laws be clear, let punishment be just,\nRestore the order built on truth and trust.",
+    lines: {
+      1: { title: "Line 1", text: "Feet locked in stocks, toes disappear; no blame." },
+      2: { title: "Line 2", text: "Biting through tender meat, nose disappears; no blame." },
+      3: { title: "Line 3", text: "Biting dry meat, striking poison; minor humiliation, no blame." },
+      4: { title: "Line 4", text: "Biting dried meat on bone, gaining golden arrows; perseverance brings fortune." },
+      5: { title: "Line 5", text: "Biting dried lean meat, gaining yellow gold; danger, but no blame." },
+      6: { title: "Line 6", text: "Neck locked in wooden collar, ears disappear; ill fortune." }
+    }
+  },
+  22: {
+    name: "Pi", title: "Grace / Adornment",
+    judgment: "Grace has success. In small matters, advantage in undertaking something.",
+    verse: "Fire at the Mountain's foot gives gentle light,\nAdornment brings small matters into sight.\nForm serves the spirit, beauty plays its part,\nYet plain simplicity reveals the heart.",
+    lines: {
+      1: { title: "Line 1", text: "Adorning his toes, leaving the carriage to walk; grace in simplicity." },
+      2: { title: "Line 2", text: "Adorning his beard; moving with the chin." },
+      3: { title: "Line 3", text: "Graceful and moist; enduring perseverance brings good fortune." },
+      4: { title: "Line 4", text: "Grace or simplicity? White winged horse; not a robber, courts a match." },
+      5: { title: "Line 5", text: "Grace in hills and gardens; roll of silk small and frugal, good fortune." },
+      6: { title: "Line 6", text: "Simple white grace; no blame." }
+    }
+  },
+  23: {
+    name: "Po", title: "Splitting Apart",
+    judgment: "Splitting Apart. It does not pay to go anywhere.",
+    verse: "Mountain collapses as the Earth gives way,\nThe dark prevails, forcing light to decay.\nAttempt no action, stay secure and still,\nYield to the winter till the spring turns hill.",
+    lines: {
+      1: { title: "Line 1", text: "The bed is split at the legs; destruction of perseverance brings ill fortune." },
+      2: { title: "Line 2", text: "The bed is split at the frame; destruction brings ill fortune." },
+      3: { title: "Line 3", text: "Splitting away from them; no blame." },
+      4: { title: "Line 4", text: "The bed is split to the skin; severe ill fortune." },
+      5: { title: "Line 5", text: "A shoal of fishes; favor comes through palace ladies, everything advantageous." },
+      6: { title: "Line 6", text: "A large fruit remains uneaten; noble man gains carriage, lesser man's house ruined." }
+    }
+  },
+  24: {
+    name: "Fu", title: "Return / Turning Point",
+    judgment: "Return. Success. Going out and coming in without error. Friends come without blame. Seven days brings return.",
+    verse: "Thunder deep in the Earth: light returns anew!\nSeven days cycle brings the ancient true.\nThe quiet moment when the forces shift,\nWelcome the turning as a sacred gift.",
+    lines: {
+      1: { title: "Line 1", text: "Return from short distance; no need for remorse, supreme good fortune." },
+      2: { title: "Line 2", text: "Quiet return; good fortune." },
+      3: { title: "Line 3", text: "Repeated return; danger, but no blame." },
+      4: { title: "Line 4", text: "Walking amid others, returning alone." },
+      5: { title: "Line 5", text: "Noble return; no remorse." },
+      6: { title: "Line 6", text: "Deluded return; ill fortune, calamity and error, five years no recovery." }
+    }
+  },
+  25: {
+    name: "Wu Wang", title: "Innocence / Unexpected",
+    judgment: "Innocence. Supreme success. Firmness brings advantage. If someone is not right, he has misfortune.",
+    verse: "Thunder moves under Heaven, pure and clear,\nAct with natural truth, devoid of fear.\nCalculated gain will bring mistake,\nPure innocence keeps living truth awake.",
+    lines: {
+      1: { title: "Line 1", text: "Innocent action brings good fortune." },
+      2: { title: "Line 2", text: "If one does not count on harvest while plowing; advantageous to undertake." },
+      3: { title: "Line 3", text: "Unexpected calamity; cow tethered by someone taken by passerby." },
+      4: { title: "Line 4", text: "He who can preserve innocence remains free of blame." },
+      5: { title: "Line 5", text: "Innocent illness; take no medicine, it cures itself." },
+      6: { title: "Line 6", text: "Innocent action when time is wrong brings error; pause." }
+    }
+  },
+  26: {
+    name: "Ta Ch'u", title: "Great Restraining",
+    judgment: "Great Restraining. Firmness brings advantage. Not eating at home brings good fortune. Advantage in crossing stream.",
+    verse: "Heaven held in Mountain: energy stored deep,\nWisdom and virtue in reserve to keep.\nFeed on ancient truth, hold steady force,\nGreat power rises on the proper course.",
+    lines: {
+      1: { title: "Line 1", text: "Danger at hand; advantageous to desist." },
+      2: { title: "Line 2", text: "Axletrees removed from carriage; forced pause." },
+      3: { title: "Line 3", text: "A fine horse for pursuit; daily practice in defense, advantageous to advance." },
+      4: { title: "Line 4", text: "Headboard on young bull's horns; great good fortune." },
+      5: { title: "Line 5", text: "Tusk of gelded boar; good fortune." },
+      6: { title: "Line 6", text: "Way of Heaven opens; great progress." }
+    }
+  },
+  27: {
+    name: "I", title: "Nourishment / Swallowing",
+    judgment: "Nourishment. Perseverance brings good fortune. Pay attention to the providing of nourishment.",
+    verse: "Thunder beneath Mountain: mind thy word and deed,\nObserve what enters and on what you feed.\nNourish the worthy, cultivate the true,\nLet inner purity enlighten you.",
+    lines: {
+      1: { title: "Line 1", text: "Letting magic tortoise go, watching my jaw drop; ill fortune." },
+      2: { title: "Line 2", text: "Turning to the hill for nourishment; deviation brings ill fortune." },
+      3: { title: "Line 3", text: "Turning away from nourishment; ten years useless, do not act." },
+      4: { title: "Line 4", text: "Seeking nourishment from above; tiger eyeing prey, no blame." },
+      5: { title: "Line 5", text: "Deviating from path, stay persevering; do not cross great stream." },
+      6: { title: "Line 6", text: "Source of nourishment; awareness of danger brings good fortune, cross great stream." }
+    }
+  },
+  28: {
+    name: "Ta Kuo", title: "Preponderance of the Great",
+    judgment: "Preponderance of the Great. The ridgepole sags. Advantage in going anywhere. Success.",
+    verse: "Lake rises over Wood: weight bends the beam,\nHeavy load demands extraordinary scheme.\nAct with courage now, break free from stress,\nIn firm transition find ultimate success.",
+    lines: {
+      1: { title: "Line 1", text: "Placing mats of white rushes beneath; no blame." },
+      2: { title: "Line 2", text: "Dry willow sprouts a shoot; old man takes young wife, everything advantageous." },
+      3: { title: "Line 3", text: "Ridgepole sags to breaking point; ill fortune." },
+      4: { title: "Line 4", text: "Ridgepole braced up; good fortune, if ulterior motives exist, humiliation." },
+      5: { title: "Line 5", text: "Dry willow sprouts flowers; old woman takes young husband, no blame no praise." },
+      6: { title: "Line 6", text: "Wading through water above head; calamity, but no blame." }
+    }
+  },
+  29: {
+    name: "K'an", title: "The Abysmal / Water",
+    judgment: "The Abysmal repeated. Sincerity yields success in heart. Actions bring esteem.",
+    verse: "Water flows on water, deep abyss on deep,\nMaintain thy heart's sincerity to keep.\nDo not falter now, hold steady mind,\nThrough double danger passage you will find.",
+    lines: {
+      1: { title: "Line 1", text: "Accustomed to abyss, falls into pit; ill fortune." },
+      2: { title: "Line 2", text: "Abyss holds danger; strive only for small gains." },
+      3: { title: "Line 3", text: "Forward, backward, abyss on abyss; do not act here." },
+      4: { title: "Line 4", text: "A jug of wine, two bowls of rice through window; no blame." },
+      5: { title: "Line 5", text: "Abyss not filled over, level achieved; no blame." },
+      6: { title: "Line 6", text: "Bound with cords, placed in thorny prison; three years no success, ill fortune." }
+    }
+  },
+  30: {
+    name: "Li", title: "The Clinging / Fire",
+    judgment: "The Clinging. Perseverance brings success. Care of the cow brings good fortune.",
+    verse: "Double Fire burns bright, glowing clear and high,\nDepend on righteous truth as days go by.\nCling to what is good, let wisdom shine,\nDocile as the cow, fulfilling destiny divine.",
+    lines: {
+      1: { title: "Line 1", text: "Early steps crisscross; reverence prevents blame." },
+      2: { title: "Line 2", text: "Yellow light of sun; supreme good fortune." },
+      3: { title: "Line 3", text: "Light of setting sun; beating pot and singing or lamenting, ill fortune." },
+      4: { title: "Line 4", text: "Sudden flare, consumed, thrown away." },
+      5: { title: "Line 5", text: "Tears in torrents, sighing in grief; good fortune." },
+      6: { title: "Line 6", text: "King uses leader to discipline; executes chief, spares followers, no blame." }
+    }
+  },
+  31: {
+    name: "Hsien", title: "Influence / Wooing",
+    judgment: "Influence. Success. Perseverance brings advantage. Taking a maiden to wife brings good fortune.",
+    verse: "Lake upon Mountain: gentle currents move,\nMutual attraction kindles deep true love.\nKeep heart open, free from selfish aim,\nResponse comes swift to kindle life's clear flame.",
+    lines: {
+      1: { title: "Line 1", text: "Influence in the big toe." },
+      2: { title: "Line 2", text: "Influence in calves; ill fortune if moving, waiting brings good fortune." },
+      3: { title: "Line 3", text: "Influence in thighs; holding onto what follows brings humiliation." },
+      4: { title: "Line 4", text: "Perseverance brings good fortune; restless thoughts bring only friends to follow." },
+      5: { title: "Line 5", text: "Influence in the back; no remorse." },
+      6: { title: "Line 6", text: "Influence in jaws, cheeks, and tongue; hollow talk." }
+    }
+  },
+  32: {
+    name: "Hêng", title: "Duration / Constancy",
+    judgment: "Duration. Success. No blame. Perseverance brings advantage. Advantage in having anywhere to go.",
+    verse: "Thunder and Wind together rule the air,\nEnduring constancy beyond compare.\nAdapt to change while rooted in the right,\nUnwavering purpose shines through darkest night.",
+    lines: {
+      1: { title: "Line 1", text: "Seeking duration too hastily brings ill fortune." },
+      2: { title: "Line 2", text: "Remorse vanishes." },
+      3: { title: "Line 3", text: "He who does not give duration to his character meets disgrace." },
+      4: { title: "Line 4", text: "No game in the field; searching in wrong place." },
+      5: { title: "Line 5", text: "Enduring virtue through perseverance; good fortune for woman, ill for man." },
+      6: { title: "Line 6", text: "Restless duration; ill fortune." }
+    }
+  },
+  33: {
+    name: "Tun", title: "Retreat",
+    judgment: "Retreat. Success. In small things, perseverance brings advantage.",
+    verse: "Heaven over Mountain: shadow starts to grow,\nNoble minds retreat when dark tides flow.\nWithdraw in dignity, hold quiet space,\nNot in anger, but in conscious grace.",
+    lines: {
+      1: { title: "Line 1", text: "Retreat at the tail; perilous, do not undertake." },
+      2: { title: "Line 2", text: "Held fast with yellow ox hide; none can tear loose." },
+      3: { title: "Line 3", text: "Halted retreat; illness and danger, keeping servants brings fortune." },
+      4: { title: "Line 4", text: "Voluntary retreat; good fortune for noble man, downfall for inferior." },
+      5: { title: "Line 5", text: "Admirable retreat; perseverance brings good fortune." },
+      6: { title: "Line 6", text: "Noble retreat; everything advantageous." }
+    }
+  },
+  34: {
+    name: "Ta Chuang", title: "Great Power",
+    judgment: "Great Power. Perseverance brings advantage.",
+    verse: "Thunder high in Heaven, power shaking ground,\nUse great strength with proper limits bound.\nForce without restraint will trap the goat,\nIn righteous measure keep true power afloat.",
+    lines: {
+      1: { title: "Line 1", text: "Power in toes; advancing brings ill fortune." },
+      2: { title: "Line 2", text: "Perseverance brings good fortune." },
+      3: { title: "Line 3", text: "Lesser man uses power, noble man does not; goat butts hedge, horns entangled." },
+      4: { title: "Line 4", text: "Perseverance brings good fortune; hedge opens, no entanglement." },
+      5: { title: "Line 5", text: "Loses goat easily; no remorse." },
+      6: { title: "Line 6", text: "Goat butts hedge, cannot move back or forward; difficulty, but hardship brings fortune." }
+    }
+  },
+  35: {
+    name: "Chin", title: "Progress",
+    judgment: "Progress. The prince is honored with horses in large numbers. In a single day granted audience three times.",
+    verse: "Sun rises over Earth, radiating bright,\nProgress advances in the expanding light.\nVirtue recognized, rewards descend,\nHonored service meets a glorious end.",
+    lines: {
+      1: { title: "Line 1", text: "Progressing, yet halted; perseverance brings fortune, stay generous if untrusted." },
+      2: { title: "Line 2", text: "Progressing in sorrow; perseverance brings fortune from ancestral mother." },
+      3: { title: "Line 3", text: "All are in accord; remorse vanishes." },
+      4: { title: "Line 4", text: "Progress like a hamster; perseverance brings danger." },
+      5: { title: "Line 5", text: "Remorse vanishes; take not gain or loss to heart, advance brings fortune." },
+      6: { title: "Line 6", text: "Progress with horns; used only to punish one's own city, danger but fortune." }
+    }
+  },
+  36: {
+    name: "Ming I", title: "Darkening of the Light",
+    judgment: "Darkening of the Light. Advantage in being persevering in adversity.",
+    verse: "Sun sinks beneath the Earth, light obscured from sight,\nGuard thy inner flame in dark of night.\nVeil thy brilliance, yield outward way,\nPreserve core truth until the break of day.",
+    lines: {
+      1: { title: "Line 1", text: "Darkening of light in flight; drooping wings, host talks." },
+      2: { title: "Line 2", text: "Light injured in left thigh; rescued with horse strength, good fortune." },
+      3: { title: "Line 3", text: "Light darkened during hunting in south; captures great leader, no haste." },
+      4: { title: "Line 4", text: "Penetrates left side of belly; uncovers dark heart, leaves gate." },
+      5: { title: "Line 5", text: "Darkening of light as Prince Chi; perseverance brings advantage." },
+      6: { title: "Line 6", text: "Not light, but darkness; climbed heaven, plunged into earth." }
+    }
+  },
+  37: {
+    name: "Chia Jen", title: "The Family",
+    judgment: "The Family. The perseverance of the woman brings advantage.",
+    verse: "Wind driven by Fire, warmth within the hearth,\nFamily order brings true peace to earth.\nLet words have substance, duties be fulfilled,\nOn inner harmony the world is built.",
+    lines: {
+      1: { title: "Line 1", text: "Firm rules within the family; remorse vanishes." },
+      2: { title: "Line 2", text: "Focus on preparing food within; perseverance brings good fortune." },
+      3: { title: "Line 3", text: "When family tempers flare, severity brings fortune; weakness brings regret." },
+      4: { title: "Line 4", text: "Enriching the house; great good fortune." },
+      5: { title: "Line 5", text: "King approaches his family; no fear, good fortune." },
+      6: { title: "Line 6", text: "His work commands respect; good fortune in the end." }
+    }
+  },
+  38: {
+    name: "K'uei", title: "Opposition",
+    judgment: "Opposition. In small matters, good fortune.",
+    verse: "Fire above Lake, forces pull apart,\nSeek common ground despite the opposing chart.\nIn small matters build a bridge between,\nDifference reveals what was unseen.",
+    lines: {
+      1: { title: "Line 1", text: "Remorse vanishes; lost horse returns on its own, avoid bad men." },
+      2: { title: "Line 2", text: "Meets master in narrow alley; no blame." },
+      3: { title: "Line 3", text: "Wagon dragged, oxen halted, hair and nose cut; end brings fortune." },
+      4: { title: "Line 4", text: "Isolated in opposition; meets companion of same mind, no blame." },
+      5: { title: "Line 5", text: "Remorse vanishes; companion bites through wrapper, advance brings fortune." },
+      6: { title: "Line 6", text: "Sees pig covered in mud, cart of devils; draws bow, then unbends—rain falls, fortune." }
+    }
+  },
+  39: {
+    name: "Chien", title: "Obstruction",
+    judgment: "Obstruction. Southwest brings advantage, Northeast does not. Advantage in seeing the great man.",
+    verse: "Water on Mountain: steep path blocked by stream,\nPause and reflect, adjust thy plan and scheme.\nTurn back inward, seek wise counsel near,\nUntil the rugged mountain path clears clear.",
+    lines: {
+      1: { title: "Line 1", text: "Going brings obstruction, coming brings praise." },
+      2: { title: "Line 2", text: "King's servant harassed by obstruction upon obstruction; not his fault." },
+      3: { title: "Line 3", text: "Going brings obstruction; returning to own fold." },
+      4: { title: "Line 4", text: "Going brings obstruction, coming brings union." },
+      5: { title: "Line 5", text: "In midst of great obstruction, friends come." },
+      6: { title: "Line 6", text: "Going brings obstruction, coming brings great success; see great man." }
+    }
+  },
+  40: {
+    name: "Hsieh", title: "Deliverance",
+    judgment: "Deliverance. Southwest brings advantage. If no further place to go, return brings fortune. If action needed, haste brings fortune.",
+    verse: "Thunder and Rain release tension in the air,\nDeliverance breaks the bonds of cold despair.\nForgive past errors, clear the path ahead,\nReturn to peace where quiet waters spread.",
+    lines: {
+      1: { title: "Line 1", text: "Without blame." },
+      2: { title: "Line 2", text: "Three foxes caught in field, gaining yellow arrows; perseverance brings fortune." },
+      3: { title: "Line 3", text: "Carrying load on back yet riding carriage invites robbers; humiliation." },
+      4: { title: "Line 4", text: "Deliver yourself from your big toe; companion comes in trust." },
+      5: { title: "Line 5", text: "Noble man deliver himself; good fortune, proves sincerity to lesser men." },
+      6: { title: "Line 6", text: "Prince shoots hawk on high wall, hits it; everything advantageous." }
+    }
+  },
+  41: {
+    name: "Sun", title: "Decrease",
+    judgment: "Decrease combined with sincerity brings supreme success without error. Advantage in undertaking something.",
+    verse: "Lake at Mountain's base: yield below to build above,\nDecrease self-interest in sincere act of love.\nTwo simple baskets offered from the heart\nSuffice to make the highest blessing start.",
+    lines: {
+      1: { title: "Line 1", text: "Going quickly after duties done; no blame, but consider decrease." },
+      2: { title: "Line 2", text: "Perseverance brings advantage; undertaking brings ill, decrease without self-loss." },
+      3: { title: "Line 3", text: "When three walk, one leaves; when one walks, finds companion." },
+      4: { title: "Line 4", text: "Decreasing one's affliction makes other come joyfully; no blame." },
+      5: { title: "Line 5", text: "Enriched by ten pairs of tortoises, nothing can oppose; supreme fortune." },
+      6: { title: "Line 6", text: "Increasing without decreasing others; no blame, perseverance fortune, gains servants." }
+    }
+  },
+  42: {
+    name: "I", title: "Increase",
+    judgment: "Increase. Advantage in undertaking something. Advantage in crossing the great stream.",
+    verse: "Wind and Thunder power combined in surge,\nIncrease and growth from inner virtues urge.\nIf good is seen, adopt it swift and clear,\nCorrect thy faults and let true worth appear.",
+    lines: {
+      1: { title: "Line 1", text: "Advantageous to accomplish great deeds; supreme good fortune, no blame." },
+      2: { title: "Line 2", text: "Enriched by ten pairs of tortoises; constant perseverance brings fortune." },
+      3: { title: "Line 3", text: "Enriched through unfortunate events; no blame if sincere, acting with central authority." },
+      4: { title: "Line 4", text: "Moves in middle, advises prince; followed in moving capital." },
+      5: { title: "Line 5", text: "Sincere heart asking no questions; supreme good fortune, kindness recognized." },
+      6: { title: "Line 6", text: "Brings increase to none, struck by others; unstable heart brings ill fortune." }
+    }
+  },
+  43: {
+    name: "Kuai", title: "Breakthrough / Resolution",
+    judgment: "Breakthrough. One must resolutely make the matter known at court. Danger. Advantage in undertaking something.",
+    verse: "Lake rises to Heaven, pressure breaks the dam,\nDecisive resolution shows what I am.\nProclaim the truth, but avoid brute force alone,\nWith steady measure let evil be overthrown.",
+    lines: {
+      1: { title: "Line 1", text: "Mighty in forward toes; advancing without strength brings error." },
+      2: { title: "Line 2", text: "Cry of alarm, weapons drawn at night; fear not." },
+      3: { title: "Line 3", text: "Mighty in cheekbones; ill fortune. Noble man walks alone in rain, bespattered, no blame." },
+      4: { title: "Line 4", text: "Skin stripped from thighs, walks with difficulty; led like sheep, regret vanishes." },
+      5: { title: "Line 5", text: "Weeds resolutely uprooted; middle path brings no blame." },
+      6: { title: "Line 6", text: "No call; in the end ill fortune comes." }
+    }
+  },
+  44: {
+    name: "Kou", title: "Coming to Meet",
+    judgment: "Coming to Meet. The maiden is powerful. One should not marry such a maiden.",
+    verse: "Wind blows under Heaven: hidden forces meet,\nA subtle power enters down the street.\nGuard against temptation's early trace,\nLest dark influence displace true grace.",
+    lines: {
+      1: { title: "Line 1", text: "Brake tied to bronze brake wheel; perseverance brings fortune, letting go brings ill." },
+      2: { title: "Line 2", text: "Fish in kitchen bag; no blame, keep away from guests." },
+      3: { title: "Line 3", text: "Skin stripped from thighs, walks with difficulty; danger, no great error." },
+      4: { title: "Line 4", text: "No fish in kitchen bag; gives rise to ill fortune." },
+      5: { title: "Line 5", text: "Melon covered with willow leaves; concealed lines drop from Heaven." },
+      6: { title: "Line 6", text: "Coming to meet with horns; humiliation, but no blame." }
+    }
+  },
+  45: {
+    name: "Ts'ui", title: "Gathering Together",
+    judgment: "Gathering Together. Success. The king approaches his temple. Advantage in seeing great man. Great sacrifices bring fortune.",
+    verse: "Lake over Earth: high waters gather deep,\nAssemble forces and true council keep.\nPrepare great offerings, unite with heart,\nIn shared foundation strength will never part.",
+    lines: {
+      1: { title: "Line 1", text: "Sincere but confused; cries then laughs, one grasp brings fortune." },
+      2: { title: "Line 2", text: "Drawn into gathering; good fortune, small offering sincere." },
+      3: { title: "Line 3", text: "Gathering with sighs; no advantage, advance brings slight humiliation, no blame." },
+      4: { title: "Line 4", text: "Great good fortune; no blame." },
+      5: { title: "Line 5", text: "Gathering in high position; no blame, if unpersuaded, lasting perseverance needed." },
+      6: { title: "Line 6", text: "Lamenting and weeping tears; no blame." }
+    }
+  },
+  46: {
+    name: "Sheng", title: "Pushing Upward",
+    judgment: "Pushing Upward has supreme success. One must see the great man. Fear not. Southward brings fortune.",
+    verse: "Wood grows within the Earth, ascending slow,\nStep by step upward see the sapling grow.\nSeek noble guidance, push with steady heart,\nGreat heights are climbed when modest beginnings start.",
+    lines: {
+      1: { title: "Line 1", text: "Pushing upward with great confidence brings good fortune." },
+      2: { title: "Line 2", text: "Small offering accepted with sincerity; no blame." },
+      3: { title: "Line 3", text: "Pushing upward into an empty city." },
+      4: { title: "Line 4", text: "King offers sacrifices on Mount Ch'i; good fortune, no blame." },
+      5: { title: "Line 5", text: "Perseverance brings good fortune; ascending steps." },
+      6: { title: "Line 6", text: "Pushing upward in darkness; unremitting perseverance advantageous." }
+    }
+  },
+  47: {
+    name: "K'un", title: "Oppression / Exhaustion",
+    judgment: "Oppression. Success. Trial brings advantage. The great man brings good fortune. Words are not believed.",
+    verse: "Lake drained of water down to barren stone,\nIn deep oppression stand firm and alone.\nQuiet endurance proves the noble spirit,\nWords carry no weight; inner strength will clear it.",
+    lines: {
+      1: { title: "Line 1", text: "Oppressed under bare tree, wanders into dark valley; three years sees nothing." },
+      2: { title: "Line 2", text: "Oppressed over food and drink; man in scarlet robes comes, sacrifice brings fortune." },
+      3: { title: "Line 3", text: "Oppressed by stone, leaning on thorns; enters house, sees not wife, ill fortune." },
+      4: { title: "Line 4", text: "Arrives slowly, oppressed in golden carriage; humiliation, but end reached." },
+      5: { title: "Line 5", text: "Nose and feet cut off, oppressed by scarlet robes; joy comes slowly, sacrifice fortune." },
+      6: { title: "Line 6", text: "Oppressed by vines, moving brings remorse; repenting brings advance and fortune." }
+    }
+  },
+  48: {
+    name: "Ching", title: "The Well",
+    judgment: "The Well. Town may change, well does not. No loss, no gain. Rope breaks before rope reaches water: ill fortune.",
+    verse: "Water over Wood: the well yields cool spring source,\nNourish the people from inexhaustible force.\nMaintain the rope, preserve the vessel clean,\nLest precious water spill away unseen.",
+    lines: {
+      1: { title: "Line 1", text: "Muddy well water, no one drinks; old well receives no birds." },
+      2: { title: "Line 2", text: "Well hole shoots fish; jug broken and leaks." },
+      3: { title: "Line 3", text: "Well cleaned, but not drunk from; heart grieves, king's clarity brings shared blessing." },
+      4: { title: "Line 4", text: "Well is being lined; no blame." },
+      5: { title: "Line 5", text: "Clear cool spring well; drunk freely." },
+      6: { title: "Line 6", text: "Well uncovered for all; supreme good fortune, great sincerity." }
+    }
+  },
+  49: {
+    name: "Ko", title: "Revolution / Change",
+    judgment: "Revolution. On specified day, belief. Supreme success. Perseverance brings advantage. Regret vanishes.",
+    verse: "Fire in the Lake: transformation reigns,\nBreak ancient bonds to shatter olden chains.\nAlign with timing, act when season calls,\nNew order rises as the old frame falls.",
+    lines: {
+      1: { title: "Line 1", text: "Bound tightly with yellow ox hide." },
+      2: { title: "Line 2", text: "When the day comes, revolutionize; advance brings fortune, no blame." },
+      3: { title: "Line 3", text: "Starting revolution brings ill; talk three times before acting." },
+      4: { title: "Line 4", text: "Remorse vanishes; change brings good fortune." },
+      5: { title: "Line 5", text: "Great man changes like a tiger; belief before oracle consulted." },
+      6: { title: "Line 6", text: "Noble man changes like leopard, lesser man changes face; advance ill, stay persistent." }
+    }
+  },
+  50: {
+    name: "Ting", title: "The Cauldron",
+    judgment: "The Cauldron. Supreme good fortune. Success.",
+    verse: "Fire over Wood: the cauldron stands secure,\nTransform raw life to sacred food and pure.\nEstablish value, honor wisdom's grace,\nIn noble vessel find thy proper place.",
+    lines: {
+      1: { title: "Line 1", text: "Cauldron overturned to clear old waste; taking concubine for son, no blame." },
+      2: { title: "Line 2", text: "Cauldron full of food; my enemies envy me, cannot harm." },
+      3: { title: "Line 3", text: "Handle of cauldron altered, pheasant fat un-eaten; rain falls, regret ends." },
+      4: { title: "Line 4", text: "Leg of cauldron breaks, prince's meal spilled; face soiled, ill fortune." },
+      5: { title: "Line 5", text: "Cauldron with yellow handles and golden rings; perseverance brings fortune." },
+      6: { title: "Line 6", text: "Cauldron with jade rings; great fortune, everything advantageous." }
+    }
+  },
+  51: {
+    name: "Chen", title: "The Arousing / Thunder",
+    judgment: "Thunder brings shock and fear. Laughing words follow. Thunder terrifies a hundred miles; he does not drop sacrificial spoon.",
+    verse: "Shock of Thunder strikes! Fear shakes the ground,\nTerror turns to laughter ringing round.\nThough shock unnerves the weak for miles about,\nThe steady priest pours wine without a doubt.",
+    lines: {
+      1: { title: "Line 1", text: "Thunder comes with shock, then joyous laughter; good fortune." },
+      2: { title: "Line 2", text: "Thunder brings danger; loses treasures, climbs nine hills—do not pursue, seven days returns." },
+      3: { title: "Line 3", text: "Thunder revives; action free of error." },
+      4: { title: "Line 4", text: "Thunder stuck in mud." },
+      5: { title: "Line 5", text: "Thunder goes and comes in danger; lose nothing, affairs attended." },
+      6: { title: "Line 6", text: "Thunder brings terror, looking around in alarm; advance ill, hit neighbors first—no blame." }
+    }
+  },
   52: {
     name: "Kân", title: "Keeping Still",
     judgment: "Earth; keep silence like thy spine! See none about thee! Thus the silk of wisdom's spun.",
@@ -331,6 +916,136 @@ const HEXAGRAM_DATA = {
       4: { title: "Line 4", text: "Keep still thy body's fidgets, Johnny raw," },
       5: { title: "Line 5", text: "And, for the love of heaven hold thy jaw!" },
       6: { title: "Line 6", text: "Fortune attends who persevere in quiet." }
+    }
+  },
+  53: {
+    name: "Chien", title: "Development / Gradual Progress",
+    judgment: "Gradual Progress. Maiden given in marriage. Good fortune. Perseverance brings advantage.",
+    verse: "Tree on Mountain grows through years slow-paced,\nGradual progress cannot be erased.\nLike wild geese flying to the mountain height,\nStep after step reach destination bright.",
+    lines: {
+      1: { title: "Line 1", text: "Wild goose advances to the shore; young officer in danger, talk, no blame." },
+      2: { title: "Line 2", text: "Wild goose advances to the cliff; eating and drinking in peace, good fortune." },
+      3: { title: "Line 3", text: "Wild goose advances to dry land; husband goes, returns not, wife pregnant un-nested, ill fortune." },
+      4: { title: "Line 4", text: "Wild goose advances to tree; finds flat branch, no blame." },
+      5: { title: "Line 5", text: "Wild goose advances to high peak; woman three years childless, end brings fortune." },
+      6: { title: "Line 6", text: "Wild goose advances to clouds; feathers used in sacred dance, supreme fortune." }
+    }
+  },
+  54: {
+    name: "Kuei Mei", title: "The Marrying Maiden",
+    judgment: "The Marrying Maiden. Undertakings bring ill fortune. Nothing that would bring advantage.",
+    verse: "Thunder above Lake: desire leads the way,\nSecondary role demands quiet stay.\nDo not take lead or push for high position,\nAdapt with patience to thy present condition.",
+    lines: {
+      1: { title: "Line 1", text: "Marrying maiden as concubine; lame man can walk, advance brings fortune." },
+      2: { title: "Line 2", text: "One-eyed man can see; perseverance of solitary person brings fortune." },
+      3: { title: "Line 3", text: "Marrying maiden as slave; returns to marry as concubine." },
+      4: { title: "Line 4", text: "Marrying maiden delays wedding; time comes for marriage." },
+      5: { title: "Line 5", text: "Sovereign I's sleeves not as fine as concubine's; moon nearly full, fortune." },
+      6: { title: "Line 6", text: "Woman holds basket with no fruit, man slaughters sheep with no blood; no advantage." }
+    }
+  },
+  55: {
+    name: "Fêng", title: "Abundance",
+    judgment: "Abundance has success. The king attains abundance. Be not sad; be like sun at midday.",
+    verse: "Thunder and Lightning fill the sky with light,\nFull zenith reached in glorious glory bright.\nBe like the midday sun, let sorrow cease,\nIn peak abundance spread the light of peace.",
+    lines: {
+      1: { title: "Line 1", text: "Meets ruler of same rank; ten days no blame, advance yields gain." },
+      2: { title: "Line 2", text: "Curtain so thick stars seen at noon; advance brings suspicion, truth brings fortune." },
+      3: { title: "Line 3", text: "Screen so dense small stars seen; right arm broken, no blame." },
+      4: { title: "Line 4", text: "Curtain screens noon sun; meets ruler of same rank, good fortune." },
+      5: { title: "Line 5", text: "Lines of brilliant men arrive; blessing and praise come, good fortune." },
+      6: { title: "Line 6", text: "House in abundance, screens his family; peeks through gate, empty three years, ill fortune." }
+    }
+  },
+  56: {
+    name: "Lü", title: "The Wanderer",
+    judgment: "The Wanderer. Success in small matters. Perseverance brings good fortune to wanderer.",
+    verse: "Fire on Mountain moves from place to place,\nThe wanderer travels with a modest grace.\nBe careful, humble, gentle on the road,\nIn quiet caution find a safe abode.",
+    lines: {
+      1: { title: "Line 1", text: "Wanderer busies with trifles; draws calamity upon self." },
+      2: { title: "Line 2", text: "Wanderer comes to inn, retains property, gains young servant; good fortune." },
+      3: { title: "Line 3", text: "Wanderer's inn burns down, loses servant; danger, humiliation." },
+      4: { title: "Line 4", text: "Wanderer rests in shelter, gains property and axe; heart not at peace." },
+      5: { title: "Line 5", text: "Shoots pheasant, loses arrow; end brings praise and office." },
+      6: { title: "Line 6", text: "Bird's nest burns; wanderer laughs first, then weeps, loses cow—ill fortune." }
+    }
+  },
+  57: {
+    name: "Sun", title: "The Gentle / Wind",
+    judgment: "The Gentle. Small success. Advantage in having somewhere to go. Advantage in seeing great man.",
+    verse: "Double Wind penetrates with subtle force,\nPervading everywhere along its course.\nRepeat instructions, clarify intent,\nIn gentle persistence true power is spent.",
+    lines: {
+      1: { title: "Line 1", text: "Advancing and retreating; military firmness advantageous." },
+      2: { title: "Line 2", text: "Penetrating beneath bed; priests and magicians used in numbers, fortune." },
+      3: { title: "Line 3", text: "Repeated penetration; humiliation." },
+      4: { title: "Line 4", text: "Remorse vanishes; three kinds of game caught in field." },
+      5: { title: "Line 5", text: "Perseverance fortune, remorse vanishes; three days before, three days after." },
+      6: { title: "Line 6", text: "Penetrating beneath bed, loses property and axe; danger, ill fortune." }
+    }
+  },
+  58: {
+    name: "Tui", title: "The Joyous / Lake",
+    judgment: "The Joyous. Success. Perseverance brings advantage.",
+    verse: "Double Lake mirrors joy and laughter free,\nDelight shared widely creates harmony.\nStay rooted fast in truth and righteous ground,\nWhere pure joy blooms true blessings will abound.",
+    lines: {
+      1: { title: "Line 1", text: "Harmonious joy; good fortune." },
+      2: { title: "Line 2", text: "Sincere joy; good fortune, remorse vanishes." },
+      3: { title: "Line 3", text: "Coming joy; ill fortune." },
+      4: { title: "Line 4", text: "Joy weighed, not yet at peace; refining faults brings joy." },
+      5: { title: "Line 5", text: "Sincerity in disintegrating influences; danger." },
+      6: { title: "Line 6", text: "Seductive joy." }
+    }
+  },
+  59: {
+    name: "Huan", title: "Dispersion",
+    judgment: "Dispersion. Success. King approaches temple. Advantage in crossing great stream. Perseverance.",
+    verse: "Wind sweeps across the Waters, scattering mist,\nRigid barriers dissolve, no more resist.\nBuild sacred temples, unify the land,\nIn shared devotion clear foundations stand.",
+    lines: {
+      1: { title: "Line 1", text: "Help arrives with horse strength; good fortune." },
+      2: { title: "Line 2", text: "At dispersion, rushes to support; remorse vanishes." },
+      3: { title: "Line 3", text: "Disperses self; no remorse." },
+      4: { title: "Line 4", text: "Disperses his group; supreme good fortune, accumulates hills." },
+      5: { title: "Line 5", text: "Loud cries at dispersion, king disperses storehouses; no blame." },
+      6: { title: "Line 6", text: "Dispersing blood; departure to distance brings freedom from blame." }
+    }
+  },
+  60: {
+    name: "Chieh", title: "Limitation",
+    judgment: "Limitation. Success. Bitter limitation must not be persevered in.",
+    verse: "Water held in Reed Lake: measure bound,\nIn proper limits harmony is found.\nYet tight constraint will strangle living breath,\nBalance restraint, avoiding freeze of death.",
+    lines: {
+      1: { title: "Line 1", text: "Not going out of door or courtyard; no blame." },
+      2: { title: "Line 2", text: "Not going out of inner gate or courtyard; ill fortune." },
+      3: { title: "Line 3", text: "He who knows no limitation will lament; no blame to others." },
+      4: { title: "Line 4", text: "Contented limitation; success." },
+      5: { title: "Line 5", text: "Sweet limitation; good fortune, advance brings praise." },
+      6: { title: "Line 6", text: "Bitter limitation; perseverance brings ill fortune, repentance ends blame." }
+    }
+  },
+  61: {
+    name: "Chung Fu", title: "Inner Truth",
+    judgment: "Inner Truth. Pigs and fishes bring good fortune. Advantage in crossing great stream. Perseverance.",
+    verse: "Wind over Lake: deep trust moves central air,\nInner sincerity reaches pig and hare.\nTransform from within, let heart be pure and plain,\nCross the great stream, eternal truth to gain.",
+    lines: {
+      1: { title: "Line 1", text: "Preparedness brings good fortune; secret motives bring unrest." },
+      2: { title: "Line 2", text: "Crane calling in shade, young answers; I have a fine goblet, share with thee." },
+      3: { title: "Line 3", text: "Finds a companion; beats drum, stops, weeps, sings." },
+      4: { title: "Line 4", text: "Moon nearly full; horse goes astray, no blame." },
+      5: { title: "Line 5", text: "Possesses truth that binds together; no blame." },
+      6: { title: "Line 6", text: "Cock's crow climbing to heaven; perseverance brings ill fortune." }
+    }
+  },
+  62: {
+    name: "Hsiao Kuo", title: "Preponderance of the Small",
+    judgment: "Preponderance of the Small. Success. Perseverance advantage. Small things may be done, not great. Flying bird brings message.",
+    verse: "Thunder over Mountain: small things prevail,\nKeep low thy path, let humble grace detail.\nFly not too high like bird against the sky,\nStay near the nest as quiet storms pass by.",
+    lines: {
+      1: { title: "Line 1", text: "Bird in flight brings ill fortune." },
+      2: { title: "Line 2", text: "Passes ancestor, meets ancestress; meets prince, no blame." },
+      3: { title: "Line 3", text: "Taking no precaution, struck from behind; ill fortune." },
+      4: { title: "Line 4", text: "No blame, meets requirement without excess; going brings danger, beware." },
+      5: { title: "Line 5", text: "Dense clouds, no rain from western borders; prince shoots arrow, hits in cave." },
+      6: { title: "Line 6", text: "Passing without meeting; flying bird caught, calamity and error." }
     }
   },
   63: {
@@ -362,23 +1077,7 @@ const HEXAGRAM_DATA = {
 };
 
 function getHexagramDetails(num) {
-  if (HEXAGRAM_DATA[num]) {
-    return HEXAGRAM_DATA[num];
-  }
-  return {
-    name: `Hexagram ${num}`,
-    title: `King Wen Number ${num}`,
-    judgment: `Hexagram ${num}: Firmness and correctness bring good fortune in this state.`,
-    verse: `Hexagram ${num}: The forces realign to establish balance and order.`,
-    lines: {
-      1: { title: "Line 1", text: `Hexagram ${num}, Line 1: Firmness in the initial stage.` },
-      2: { title: "Line 2", text: `Hexagram ${num}, Line 2: Central position maintained.` },
-      3: { title: "Line 3", text: `Hexagram ${num}, Line 3: Active transition requires care.` },
-      4: { title: "Line 4", text: `Hexagram ${num}, Line 4: Proper positioning brings success.` },
-      5: { title: "Line 5", text: `Hexagram ${num}, Line 5: Supreme authority exercised correctly.` },
-      6: { title: "Line 6", text: `Hexagram ${num}, Line 6: Caution at the culmination.` }
-    }
-  };
+  return HEXAGRAM_DATA[num];
 }
 
 function numberToLeggeToss(num) {
