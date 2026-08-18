@@ -198,7 +198,7 @@
         <h3>Transformed Outcome Reading</h3>
         <div class="poetic-text" id="sVerse"></div>
         
-        <h4>Transformed Hexagram: Judgment & Line Texts</h4>
+        <h4>Transformed Hexagram: Judgment</h4>
         <div class="full-text-block" id="sFullText"></div>
       </div>
 
@@ -1218,13 +1218,7 @@ function runDivination(tosses, quantumValues) {
       <em>"${sData.judgment}"</em>
     </div>`;
 
-    for (let i = 1; i <= 6; i++) {
-      const sLineDetails = sData.lines[i] || { title: `Line ${i}`, text: `Line ${i} of Transformed Hexagram` };
-      fullTextHtml += `<div style="margin-bottom: 0.5rem;">
-        <strong style="color: var(--accent);">${sLineDetails.title}:</strong> 
-        <span>"${sLineDetails.text}"</span>
-      </div>`;
-    }
+    
     sFullText.innerHTML = fullTextHtml;
     
     sBox.style.display = 'block';
